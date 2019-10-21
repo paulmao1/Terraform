@@ -1,0 +1,19 @@
+1. #init terraform#
+terraform init
+
+2. #create new workspace Dev#
+terraform workspace new Dev
+terraform plan -out Dev.tfplan
+terraform apply "Dev.tfplan"
+
+3. #create new workspace UAT#
+terraform workspace new UAT
+terraform plan -out UAT.tfplan
+terraform apply "UAT.tfplan"
+
+4. #destory workspace#
+terraform workspace list
+terraform workspace select xxxx 
+terraform destory
+
+5.
