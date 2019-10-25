@@ -206,14 +206,14 @@ resource "azurerm_virtual_machine" "Azure-VM" {
   location              = "${azurerm_resource_group.ResourceGroup.location}"
   resource_group_name   = "${azurerm_resource_group.ResourceGroup.name}"
   network_interface_ids = ["${azurerm_network_interface.nic[count.index].id}"]
-  vm_size               = "Standard_B1s"
+  vm_size               = var.instance_size[terraform.workspace]
   availability_set_id   =  "${azurerm_availability_set.av.id}"
   
 
   storage_image_reference {
     publisher = "Canonical"
     offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
+    sku       = "18.04-LTS"
     version   = "latest"
   }
 
@@ -239,6 +239,7 @@ resource "azurerm_virtual_machine" "Azure-VM" {
       }
 
     inline = [
+      "sudo apt-get update",
       "sudo apt-get -y install nginx",
       "sudo service nginx start",
       "echo '<html><head><title>Blue Team Server</title></head><body style=\"background-color:#1F778D\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Blue Team</span></span></p></body></html>' | sudo tee /usr/share/nginx/html/index.html"
@@ -253,12 +254,13 @@ resource "azurerm_virtual_machine" "Azure-VM" {
       }
 
     inline = [
+      "sudo apt-get update",
       "sudo apt-get -y install nginx",
-      "echo '<html><head><title>Blue Team Server</title></head><body style=\"background-color:#1F778D\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Blue Team-${count.index}</span></span></p></body></html>' | sudo tee /var/www/html/index.nginx-debian.html",
+      "sudo echo '<html><head><title>Blue Team Server</title></head><body style=\"background-color:#1F778D\"><p style=\"text-align: center;\"><span style=\"color:#FFFFFF;\"><span style=\"font-size:28px;\">Blue Team-${count.index}</span></span></p></body></html>' | sudo tee /var/www/html/index.nginx-debian.html",
       "sudo service nginx start"
     ]
   }
   tags = {
-    environment = "staging"
+    environment = terraform.workspace
     }  
 }

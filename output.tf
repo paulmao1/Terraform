@@ -2,6 +2,6 @@
 # OUTPUT
 ##################################################################################
 
-output "azure_instance_public_ip" {
-    value = "${azurerm_public_ip.mypublic.ip_address}"
+output "azure_instance_public_dns" {
+    value = "${azurerm_public_ip.mypublic.fqdn}"
 }

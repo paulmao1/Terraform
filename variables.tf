@@ -11,6 +11,9 @@ variable "password"  {}
 variable "network_address_space" {
     type = map(string)
 }
+variable "instance_size" {
+    type = map(string)
+}
 variable "instance_count" {
     type = map(number)
 }
