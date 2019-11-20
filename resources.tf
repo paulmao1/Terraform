@@ -82,7 +82,7 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
 sku {
    name     = "Standard_B1s"
    tier     = "Standard"
-   capacity = "{var.instance_count}"
+   capacity = "{var.instance_count[terraform.workspace]}"
  }
 storage_profile_image_reference {
     publisher = "Canonical"

@@ -3,5 +3,5 @@
 ##################################################################################
 
 output "vmss_public_ip" {
-    value = "${azurerm_public_ip.azlb.ip_address}"
+    value = module.mylb.azurerm_public_ip_address
 }
