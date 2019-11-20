@@ -11,7 +11,7 @@ subnet_count    = {
     default = 2
 }
 instance_count   = {
-    Dev     = 1
+    Dev     = 2
     UAT     = 1
     Pro     = 1
     default = 1

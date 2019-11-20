@@ -53,10 +53,11 @@ resource "azurerm_virtual_network" "network" {
 }
 
 resource "azurerm_subnet" "subnet" {
+  count= var.subnet_count[terraform.workspace]
   name = "${terraform.workspace}-Subnet"
   resource_group_name  = "${azurerm_resource_group.ResourceGroup.name}"
   virtual_network_name = "${azurerm_virtual_network.network.name}"
-  address_prefix       = "${cidrsubnet(var.network_address_space[terraform.workspace], 8,  1)}"
+  address_prefix       = "${cidrsubnet(var.network_address_space[terraform.workspace], 8,  count.index + 1)}"
 }
 
 #Load Balancer#
@@ -81,7 +82,7 @@ resource "azurerm_virtual_machine_scale_set" "vmss" {
 sku {
    name     = "Standard_B1s"
    tier     = "Standard"
-   capacity = 1
+   capacity = "{var.instance_count}"
  }
 storage_profile_image_reference {
     publisher = "Canonical"
@@ -112,7 +113,7 @@ network_profile {
 
    ip_configuration {
      name                                   = "IPConfiguration"
-     subnet_id                              = azurerm_subnet.subnet.id
+     subnet_id                              = azurerm_subnet.subnet[0].id
      load_balancer_backend_address_pool_ids = ["${module.mylb.azurerm_lb_backend_address_pool_id}"]
      primary = true
    }
