@@ -35,7 +35,7 @@ export ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
 export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
 ```
 
-4. Run the scripts follwing the [command.txt][1]
+4. Run the scripts follwing the [instructions][1]
 
 5. You can find the Ansinle Dynamic Invertory [here][2]
 
