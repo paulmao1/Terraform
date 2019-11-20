@@ -16,4 +16,6 @@ terraform workspace list
 terraform workspace select xxxx 
 terraform destroy
 
-5.
+5.Powershell setup variable
+$env:ANSIBLE_TF_BIN="terraform"
+$env:ANSIBLE_TF_WS_NAME="default"

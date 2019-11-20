@@ -2,6 +2,6 @@
 # OUTPUT
 ##################################################################################
 
-output "azure_instance_public_dns" {
-    value = "${azurerm_public_ip.mypublic.fqdn}"
+output "vmss_public_ip" {
+    value = module.mylb.azurerm_public_ip_id
 }
