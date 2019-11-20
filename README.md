@@ -18,7 +18,7 @@ Supported platform:
 * Azure Cloud
 
 
-## Usage for Linux
+## Usage
 
 1. Clone the repository and cd into it
 
@@ -35,10 +35,10 @@ export ARM_CLIENT_SECRET="00000000-0000-0000-0000-000000000000"
 export ARM_TENANT_ID="00000000-0000-0000-0000-000000000000"
 ```
 
-4. Run the scripts follwing the command.txt[1]
+4. Run the scripts follwing the [command.txt][1]
 
-5. You can find the Ansinle Dynamic Invertory here[2]
+5. You can find the Ansinle Dynamic Invertory [here][2]
 
-[1]https://github.com/paulmao1/Terraform/command.txt
-[2]https://github.com/nbering/terraform-provider-ansible
+[1]:https://github.com/paulmao1/Terraform/command.txt
+[2]:https://github.com/nbering/terraform-provider-ansible
 
